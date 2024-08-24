@@ -1,0 +1,7 @@
+server:
+  scheme:     postgres
+  localhost:  127.0.0.1:15432 # localhost для пк
+  host:       postgresql:5432 # postgresql:5432 для контейнера
+  username:   postgres
+  password:   postgres
+  path:       tasks

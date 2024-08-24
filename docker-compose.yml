@@ -1,0 +1,34 @@
+version: "3.0"
+services:
+  postgresql:
+    image: postgres:latest
+    ports:
+      - '15432:5432'
+    restart: always
+    environment:
+      POSTGRES_DB: "tasks"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    volumes:
+      - db_postgres:/var/lib/postgresql/data
+    networks:
+      - myapp
+
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '8080:8080'
+    depends_on:
+      - postgresql
+    restart: always
+    networks:
+      - myapp
+
+networks:
+  myapp:
+
+volumes:
+  db_postgres:
